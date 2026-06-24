@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aristeidis Anastasopoulos — Data Scientist & Analyst</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #1a1a2e;
+      --surface:  #1a1a2e;
+      --surface2: #1f1f3a;
+      --border:   #2e2e5e;
+      --ink:      #f2f2f2;
+      --muted:    #b8b8d0;
+      --faint:    #8080aa;
+      --accent:   #e8c170;
+      --accent2:  #4a8fe8;
+      --max-w:    760px;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Georgia', 'Times New Roman', serif;
+      line-height: 1.75;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(12,12,12,0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    .nav-logo {
+      font-size: 0.93rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+    }
+    nav ul { list-style: none; display: flex; gap: 1.8rem; }
+    nav ul a {
+      font-size: 0.75rem;
+      color: var(--faint);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: color 0.15s;
+    }
+    nav ul a:hover { color: var(--ink); }
+
+    /* ── LAYOUT ── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+    section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+    section:last-of-type { border-bottom: none; }
+
+    /* ── HERO ── */
+    #hero { padding: 7rem 0 5rem; }
+    .hero-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin-bottom: 1.4rem;
+    }
+    .hero-name {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: normal;
+      line-height: 1.1;
+      margin-bottom: 1.4rem;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .hero-sub {
+      font-size: 0.97rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      line-height: 1.85;
+    }
+    .btn-row { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      font-family: Georgia, serif;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      padding: 0.55rem 1.3rem;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--accent); color: #0c0c0c; border: 1px solid var(--accent); font-weight: bold; }
+    .btn-primary:hover { background: #d4a84f; border-color: #d4a84f; }
+    .btn-outline { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: var(--muted); color: var(--ink); }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--faint);
+      margin-bottom: 3rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── PROJECTS ── */
+    .project-item {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 0 1.2rem;
+      margin-bottom: 2.8rem;
+      padding-bottom: 2.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .project-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .project-num {
+      font-size: 1.4rem;
+      font-weight: normal;
+      color: var(--accent);
+      line-height: 1;
+      padding-top: 0.1rem;
+      opacity: 0.6;
+    }
+    .project-content h3 {
+      font-size: 1rem;
+      font-weight: normal;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .project-content p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+      line-height: 1.78;
+    }
+    .project-content a { font-size: 0.8rem; color: var(--accent2); text-decoration: none; }
+    .project-content a:hover { text-decoration: underline; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.8rem; }
+    .tag {
+      font-size: 0.68rem;
+      border: 1px solid var(--border);
+      padding: 0.12rem 0.55rem;
+      color: var(--faint);
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+    .badge-ongoing {
+      display: inline-block;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.1rem 0.5rem;
+      border-radius: 2px;
+      margin-bottom: 0.5rem;
+      opacity: 0.8;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-item {
+      display: grid;
+      grid-template-columns: 155px 1fr;
+      gap: 0 1.5rem;
+      margin-bottom: 2.8rem;
+      padding-bottom: 2.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .exp-date {
+      font-size: 0.75rem;
+      color: var(--accent);
+      padding-top: 0.15rem;
+      line-height: 1.6;
+      opacity: 0.75;
+    }
+    .exp-content h3 { font-size: 1rem; font-weight: normal; color: var(--ink); margin-bottom: 0.25rem; }
+    .exp-content .org { font-size: 0.8rem; color: var(--faint); font-style: italic; margin-bottom: 0.8rem; }
+    .exp-content ul { padding-left: 1.1rem; color: var(--muted); font-size: 0.92rem; }
+    .exp-content ul li { margin-bottom: 0.45rem; line-height: 1.72; }
+    .exp-content p { font-size: 0.92rem; color: var(--muted); }
+
+    /* ── EDUCATION ── */
+    .edu-item {
+      display: grid;
+      grid-template-columns: 155px 1fr;
+      gap: 0 1.5rem;
+      margin-bottom: 2.2rem;
+      padding-bottom: 2.2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .edu-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .edu-date { font-size: 0.75rem; color: var(--accent); padding-top: 0.15rem; opacity: 0.75; }
+    .edu-content h3 { font-size: 1rem; font-weight: normal; color: var(--ink); margin-bottom: 0.25rem; }
+    .edu-content .org { font-size: 0.8rem; color: var(--faint); font-style: italic; margin-bottom: 0.4rem; }
+    .edu-content p { font-size: 0.92rem; color: var(--muted); }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 155px 1fr;
+      gap: 1.4rem 1.5rem;
+      align-items: start;
+    }
+    .skill-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      padding-top: 0.3rem;
+      opacity: 0.7;
+    }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skill-pill {
+      font-size: 0.8rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.75rem;
+      border-radius: 2px;
+      transition: all 0.15s;
+      background: var(--surface);
+    }
+    .skill-pill:hover { border-color: var(--accent); color: var(--ink); }
+    .skills-divider { grid-column: 1/-1; border: none; border-top: 1px solid var(--border); }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 190px;
+      gap: 3rem;
+      align-items: start;
+    }
+    .about-text p { font-size: 0.94rem; color: var(--muted); line-height: 1.88; }
+    .about-meta { font-size: 0.82rem; }
+    .about-meta-row { margin-bottom: 1.3rem; }
+    .about-meta-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+      opacity: 0.7;
+    }
+    .about-meta-value { color: var(--muted); line-height: 1.65; font-size: 0.82rem; }
+
+    /* ── CONTACT ── */
+    .contact-intro { font-size: 0.94rem; color: var(--muted); margin-bottom: 2.2rem; max-width: 440px; line-height: 1.8; }
+    .contact-links { display: flex; flex-direction: column; gap: 1.1rem; }
+    .contact-link { display: flex; align-items: baseline; gap: 1.2rem; font-size: 0.93rem; }
+    .contact-link-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      min-width: 68px;
+      opacity: 0.7;
+    }
+    .contact-link a { color: var(--ink); text-decoration: none; transition: color 0.15s; }
+    .contact-link a:hover { color: var(--accent); }
+    .contact-link span { color: var(--muted); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--faint);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav ul { gap: 1rem; }
+      nav ul a { font-size: 0.68rem; }
+      .exp-item, .edu-item, .skills-grid { grid-template-columns: 1fr; }
+      .exp-date, .edu-date { margin-bottom: 0.3rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .project-item { grid-template-columns: 1fr; }
+      .project-num { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero">AA</a>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-label">Data Scientist & Analyst · Rotterdam, NL</div>
+    <h1 class="hero-name">Aristeidis Anastasopoulos</h1>
+    <p class="hero-sub">
+      MSc Economics & Business student at Erasmus University Rotterdam, specialising in Data Science and Marketing Analytics, with a background in business.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">Projects</div>
+
+    <div class="project-item">
+      <div class="project-num">01</div>
+      <div class="project-content">
+        <div class="badge-ongoing">Ongoing</div>
+        <h3>MSc Thesis — Spotify Context-Switching Behaviour</h3>
+        <p>Predicting when and why listeners switch context in Spotify music streaming sessions. Using Survival Analysis to model time-to-switch and Hidden Markov Models to capture latent listening states across sessions.</p>
+        <div class="tags">
+          <span class="tag">R</span><span class="tag">Survival Analysis</span><span class="tag">Hidden Markov Models</span><span class="tag">Spotify</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">02</div>
+      <div class="project-content">
+        <h3>E-commerce Performance Dashboard</h3>
+        <p>Built a measurement framework analysing holiday season performance across 257,000 website visitors. Covered purchase funnel drop-off, revenue by channel, product and country, and day-of-week patterns. Organic Search led in volume but Referral delivered comparable revenue with far fewer visits.</p>
+        <a href="https://lookerstudio.google.com/reporting/fa6c023a-8859-4a19-91d0-969a376085b8" target="_blank">View live dashboard →</a>
+        <div class="tags">
+          <span class="tag">SQL</span><span class="tag">BigQuery</span><span class="tag">Looker Studio</span><span class="tag">Funnel Analysis</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">03</div>
+      <div class="project-content">
+        <h3>Amazon Review Analysis & LLM Fine-tuning</h3>
+        <p>Analysed 7,000 Amazon food reviews using Word2Vec embeddings, BERTopic for topic discovery, and VADER for sentiment scoring. Fine-tuned BERT and benchmarked GPT-3.5 across zero, one, and few-shot prompting strategies. GPT-3.5 zero-shot reached 93.8% accuracy; BERT fine-tuned to 83.0%.</p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">BERT</span><span class="tag">GPT-3.5</span><span class="tag">BERTopic</span><span class="tag">Word2Vec</span><span class="tag">VADER</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">04</div>
+      <div class="project-content">
+        <h3>Academic Failure Prediction</h3>
+        <p>Predicted student failure risk in Mathematics and Portuguese using Decision Trees and Random Forest classifiers trained on socio-economic and family background data from 1,044 students. Applied SHAP globally to identify which factors most drive failure risk across subjects.</p>
+        <div class="tags">
+          <span class="tag">R</span><span class="tag">Random Forest</span><span class="tag">Decision Trees</span><span class="tag">SHAP</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">05</div>
+      <div class="project-content">
+        <h3>Employee Attrition Analysis</h3>
+        <p>Applied Conditional Inference Trees to IBM HR data (1,470 employees) to identify the strongest predictors of attrition. Results were translated into targeted retention strategy recommendations for department managers.</p>
+        <div class="tags">
+          <span class="tag">R</span><span class="tag">Conditional Inference Trees</span><span class="tag">HR Analytics</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">06</div>
+      <div class="project-content">
+        <h3>Obesity Risk Classification</h3>
+        <p>Trained a Random Forest classifier on behavioral and demographic data from 1,610 individuals to classify obesity risk levels. Used SHAP for global feature importance and LIME to explain individual predictions locally.</p>
+        <div class="tags">
+          <span class="tag">R</span><span class="tag">Random Forest</span><span class="tag">SHAP</span><span class="tag">LIME</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">07</div>
+      <div class="project-content">
+        <h3>Student Depression Prediction</h3>
+        <p>Predicted depression risk among 27,800 students using Logistic Regression and Elastic Net penalised regression. Compared both models on accuracy and variable selection to identify the most informative predictors of mental health risk.</p>
+        <div class="tags">
+          <span class="tag">R</span><span class="tag">Logistic Regression</span><span class="tag">Elastic Net</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">08</div>
+      <div class="project-content">
+        <h3>Global Life Expectancy Modelling</h3>
+        <p>Modelled life expectancy across 160 countries using World Bank data. Applied Elastic Net regression (R²=0.90 train, R²=0.78 test) and Principal Component Regression to handle correlated predictors and uncover dimensions driving global health outcomes.</p>
+        <div class="tags">
+          <span class="tag">R</span><span class="tag">Elastic Net</span><span class="tag">PCA</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Work Experience</div>
+
+    <div class="exp-item">
+      <div class="exp-date">Jul 2025 — Present</div>
+      <div class="exp-content">
+        <h3>Laboratory Analyst</h3>
+        <div class="org">SGS · Hoogvliet, Netherlands · Part-time</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Dec 2025 — Feb 2026</div>
+      <div class="exp-content">
+        <h3>Case Study Researcher</h3>
+        <div class="org">UNICEF · The Hague, Netherlands · Full-time</div>
+        <ul>
+          <li>Cleaned and engineered features from raw donor survey data, constructing composite indexes for Trust, Impact, Financial Capacity and other psychological dimensions.</li>
+          <li>Built an XGBoost model to predict donor NPS across 5,300 donors, identifying Trust and Impact as the strongest predictors of disengagement.</li>
+          <li>Identified 176 high-risk "fragile" donors (3.3% of total) through financial capacity and NPS segmentation.</li>
+          <li>Designed and tested 3 donor intervention strategies by creating AI-simulated donor profiles (digital twins) to predict how each intervention would affect donor sentiment.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Aug 2023 — Jul 2025</div>
+      <div class="exp-content">
+        <h3>Sales Agent</h3>
+        <div class="org">June Homes · Athens, Greece · US Real Estate Startup ($50M+ funding)</div>
+        <ul>
+          <li>Coordinated with Business and Analytics teams to provide feedback on newly acquired units based on prospective tenant interest and rental traction.</li>
+          <li>Conducted virtual tours for properties in Boston, MA for prospective clients.</li>
+          <li>Guided 300+ applicants from initial inquiry to lease signing in the first year.</li>
+          <li>Consistently met and exceeded monthly leasing targets.</li>
+          <li>Trained and onboarded 4 new agents.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Nov 2022 — Aug 2023</div>
+      <div class="exp-content">
+        <h3>Mandatory Military Service</h3>
+        <div class="org">Kos, Greece</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Jul 2022 — Sep 2022</div>
+      <div class="exp-content">
+        <h3>Business Analyst Intern</h3>
+        <div class="org">Ideal Bikes · Patras, Greece · Bike manufacturing and exporting</div>
+        <ul>
+          <li>Collected and structured scattered sales notes into weekly Excel reports, analysing product performance and in-store location vs. sales trends.</li>
+          <li>Cleaned and formatted data into CSV files for migration into Entersoft CRM/ERP system.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-label">Education</div>
+
+    <div class="edu-item">
+      <div class="edu-date">Sep 2025 — Present</div>
+      <div class="edu-content">
+        <h3>MSc Economics and Business</h3>
+        <div class="org">Erasmus University Rotterdam · Netherlands</div>
+        <p>Specialisation in Data Science and Marketing Analytics · Grade: 7.9/10 (ongoing)</p>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-date">Sep 2018 — Sep 2022</div>
+      <div class="edu-content">
+        <h3>BSc Business Administration</h3>
+        <div class="org">University of Patras · Greece</div>
+        <p>4-year degree · 240 ECTS · Grade: 7.51/10 — "Very Good"</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Skills</div>
+    <div class="skills-grid">
+
+      <div class="skill-label">Programming</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">R</span>
+        <span class="skill-pill">SQL</span>
+        <span class="skill-pill">Excel</span>
+      </div>
+
+      <hr class="skills-divider" />
+
+      <div class="skill-label">Machine Learning</div>
+      <div class="skill-pills">
+        <span class="skill-pill">XGBoost</span>
+        <span class="skill-pill">Random Forest</span>
+        <span class="skill-pill">Elastic Net</span>
+        <span class="skill-pill">Logistic Regression</span>
+        <span class="skill-pill">Decision Trees</span>
+        <span class="skill-pill">Survival Analysis</span>
+        <span class="skill-pill">Hidden Markov Models</span>
+      </div>
+
+      <hr class="skills-divider" />
+
+      <div class="skill-label">Explainability</div>
+      <div class="skill-pills">
+        <span class="skill-pill">SHAP</span>
+        <span class="skill-pill">LIME</span>
+      </div>
+
+      <hr class="skills-divider" />
+
+      <div class="skill-label">NLP & LLMs</div>
+      <div class="skill-pills">
+        <span class="skill-pill">BERT</span>
+        <span class="skill-pill">GPT-3.5</span>
+        <span class="skill-pill">BERTopic</span>
+        <span class="skill-pill">Word2Vec</span>
+        <span class="skill-pill">VADER</span>
+      </div>
+
+      <hr class="skills-divider" />
+
+      <div class="skill-label">BI & Viz</div>
+      <div class="skill-pills">
+        <span class="skill-pill">BigQuery</span>
+        <span class="skill-pill">Looker Studio</span>
+      </div>
+
+      <hr class="skills-divider" />
+
+      <div class="skill-label">AI Tools</div>
+      <div class="skill-pills">
+        <span class="skill-pill">ChatGPT</span>
+        <span class="skill-pill">Claude</span>
+      </div>
+
+      <hr class="skills-divider" />
+
+      <div class="skill-label">Languages</div>
+      <div class="skill-pills">
+        <span class="skill-pill">English — Fluent</span>
+        <span class="skill-pill">Greek — Native</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">About</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a Data Scientist and Analyst finishing my MSc at Erasmus University Rotterdam, originally from Greece and based in Rotterdam. I'm actively looking for opportunities where I can combine my business background with my data science skills to work on real world applied problems. I thrive when I'm learning something new and keeping busy. In my free time you'll find me working out, playing sports, hanging out with friends, or daydreaming about Greek beaches.</p>
+      </div>
+      <div class="about-meta">
+        <div class="about-meta-row">
+          <div class="about-meta-label">Currently</div>
+          <div class="about-meta-value">MSc DSMA · Erasmus University Rotterdam</div>
+        </div>
+        <div class="about-meta-row">
+          <div class="about-meta-label">Previously</div>
+          <div class="about-meta-value">Case Study Researcher · UNICEF</div>
+        </div>
+        <div class="about-meta-row">
+          <div class="about-meta-label">Focus</div>
+          <div class="about-meta-value">Predictive modelling · NLP · Marketing analytics</div>
+        </div>
+        <div class="about-meta-row">
+          <div class="about-meta-label">Toolbox</div>
+          <div class="about-meta-value">Python · R · SQL · BigQuery · Looker Studio</div>
+        </div>
+        <div class="about-meta-row">
+          <div class="about-meta-label">Languages</div>
+          <div class="about-meta-value">Greek (native) · English (fluent)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Contact</div>
+    <p class="contact-intro">Open to data science and analytics roles — internships, traineeships, or full-time. Happy to connect.</p>
+    <div class="contact-links">
+      <div class="contact-link">
+        <span class="contact-link-label">Email</span>
+        <a href="mailto:aristidisanastasop@gmail.com">aristidisanastasop@gmail.com</a>
+      </div>
+      <div class="contact-link">
+        <span class="contact-link-label">Phone</span>
+        <span>+31 6 1011 2139</span>
+      </div>
+      <div class="contact-link">
+        <span class="contact-link-label">LinkedIn</span>
+        <a href="https://www.linkedin.com/in/aristeidis-anastasopoulos-b40226232/" target="_blank">linkedin.com/in/aristeidis-anastasopoulos</a>
+      </div>
+      <div class="contact-link">
+        <span class="contact-link-label">CV</span>
+        <a href="cv.pdf" download>Download PDF</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Aristeidis Anastasopoulos · Rotterdam</footer>
+
+</body>
+</html>
